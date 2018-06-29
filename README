@@ -1,153 +1,164 @@
-ANAGAME(1)            User Contributed Perl Documentation           ANAGAME(1)
+NAME
 
+    Anagame, an anagram training game.
 
+SYNOPSIS
 
-NNAAMMEE
-       Anagame, an anagram training game.
+    anagame [--words=/usr/share/dict/words] [--start=4] [--end=22] [--hint]
 
-SSYYNNOOPPSSIISS
-       anagame [--words=/usr/share/dict/words] [--start=4] [--end=22] [--hint]
+    anagame --version
 
-       anagame --version
+    anagame --help
 
-       anagame --help
+    anagame --usage
 
-       anagame --usage
+     Options:
+       -words/w/file        specifies a dictionary file
+       -start/s/begin/min   smallest number of letters
+       -end/e/fin           largest number of letters
+       -hints               enable alphagram hints
+       -termfix             fix ctrl+C (terminate signal) under Term::Readline::Gnu
+       -version/v           print version information and exit
+       -help/h/?            show this message and exit
+       -usage/u             show a complete usage manual
 
-        Options:
-          -words/w/file        specifies a dictionary file
-          -start/s/begin/min   smallest number of letters
-          -end/e/fin           largest number of letters
-          -hints               enable alphagram hints
-          -termfix             fix ctrl+C (terminate signal) under Term::Readline::Gnu
-          -version/v           print version information and exit
-          -help/h/?            show this message and exit
-          -usage/u             show a complete usage manual
+    Dashes may be doubled and/or equals signs omitted.
 
-       Dashes may be doubled and/or equals signs omitted.
+OPTIONS
 
-OOPPTTIIOONNSS
-       --wwoorrddss
-                   This specifies a dictionary file. Suitable dictionaries are
-                   available for common spellcheckers such as ispell.  Each line in
-                   the file should contain a correctly-spelled word.  Any words that
-                   consist entirely of lower-case letters (in the current locale)
-                   will be considered as anagram solutions. B<-w> and B<-file> are
-                   understood as synonyms.
+    -words
 
-       --ssttaarrtt
-                   The number of letters in the shortest anagram. This option is an
-                   integer, although values that are not counting numbers will not
-                   yield anagrams.  B<-s>, B<-begin> and B<-min> are understood as
-                   synonyms.
+          This specifies a dictionary file. Suitable dictionaries are
+          available for common spellcheckers such as ispell.  Each line in
+          the file should contain a correctly-spelled word.  Any words that
+          consist entirely of lower-case letters (in the current locale)
+          will be considered as anagram solutions. B<-w> and B<-file> are
+          understood as synonyms.
 
-       --eenndd
-                   This is the longest length of anagram to attempt to find.
-                   Completing an anagram of this length may be considered a win. If
-                   start is greater than end, you will not get any anagrams. This
-                   option is an integer.  B<-e> and B<-fin> are understood as
-                   synonyms.
+    -start
 
-       --hhiinnttss
-                   If set, alphagram hints will be shown on the prompt. Alphagrams
-                   are the letters of the anagram sorted into alphabetical order; one
-                   technique for solving anagrams is to memorise the alphagram of
-                   each word. B<-hint> and B<-h> are understood as synonyms.
+          The number of letters in the shortest anagram. This option is an
+          integer, although values that are not counting numbers will not
+          yield anagrams.  B<-s>, B<-begin> and B<-min> are understood as
+          synonyms.
 
-       --vveerrssiioonn
-                   Basic version information. B<-v> is understood as a synonym.
-                   Use of this option will prevent the game from running.
+    -end
 
-       --hheellpp
-                   A help message. B<-he> and B<-?> are understood as synonyms.
-                   Use of this option will prevent the game from running.
+          This is the longest length of anagram to attempt to find.
+          Completing an anagram of this length may be considered a win. If
+          start is greater than end, you will not get any anagrams. This
+          option is an integer.  B<-e> and B<-fin> are understood as
+          synonyms.
 
-DDEESSCCRRIIPPTTIIOONN
-       The user is presented with a number of randomised anagrams of
-       increasing length. Upon solving and typing in the correct word, a
-       longer anagram puzzle is presented. Where more than one anagram exists,
-       one specific anagram is required; this assists the user with learning
-       anagrams.
+    -hints
 
-       The user can give up at any time by sending an end-of-file (usually
-       _c_t_r_l_+_D) or interrupt signal (usually _c_t_r_l_+_C); the solution to the
-       current anagram will be displayed.
+          If set, alphagram hints will be shown on the prompt. Alphagrams
+          are the letters of the anagram sorted into alphabetical order; one
+          technique for solving anagrams is to memorise the alphagram of
+          each word. B<-hint> and B<-h> are understood as synonyms.
 
-WWAARRNNIINNGG
-       If the dictionary file contains rude words, or other words of dubious
-       origin, then these may be produced by the program. It has no taste
-       filter.
+    -version
 
-       The words produced by this game come from the dictionary file of your
-       computer, and the author of this package is not responsible for them.
+          Basic version information. B<-v> is understood as a synonym.
+          Use of this option will prevent the game from running.
 
-DDEEPPEENNDDEENNCCIIEESS
-       LLiisstt::::UUttiill
-               Standard with Perl 5.8.0+. Used to create the anagrams.
+    -help
 
-       TTeerrmm::::RReeaaddLLiinnee
-               Standard with Perl 5.8.0+, but a stub library. This is used for
-               console interaction. See the section "READLINE NOTE" below for
-               compatibility with other Readline packages.
+          A help message. B<-he> and B<-?> are understood as synonyms.
+          Use of this option will prevent the game from running.
 
-       PPeerrll::::UUnnssaaffee::::SSiiggnnaallss
-               This package can be installed through CCPPAANN, perhaps like this:
-               "perl -MCPAN -e 'install Perl::Unsafe::Signals'".  This works
-               around an annoying bug with TTeerrmm::::RReeaaddLLiinnee::::GGNNUU if used; see
-               the section on "READLINE NOTE" for further details. In a
-               nutshell, it allows the game to exit when you press _C_t_r_l_+_C,
-               without requiring you to then press _E_n_t_e_r.
+DESCRIPTION
 
-       PPoodd::::UUssaaggee
-               Standard with Perl 5.8.0+. Used along with GGeettoopptt::::LLoonngg for, to
-               implement the hheellpp and uussaaggee command-line options.
+    The user is presented with a number of randomised anagrams of
+    increasing length. Upon solving and typing in the correct word, a
+    longer anagram puzzle is presented. Where more than one anagram exists,
+    one specific anagram is required; this assists the user with learning
+    anagrams.
 
-       GGeettoopptt::::LLoonngg
-               This package can be installed through CCPPAANN, perhaps like this:
-               "perl -MCPAN -e 'install Getopt::Long'".  If available, this
-               allows you to control the game through the command-line
-               options, perhaps to specify a different dictionary file or to
-               turn on alphagram hints.
+    The user can give up at any time by sending an end-of-file (usually
+    ctrl+D) or interrupt signal (usually ctrl+C); the solution to the
+    current anagram will be displayed.
 
-RREEAADDLLIINNEE NNOOTTEE
-       Having installed TTeerrmm::::RReeaaddLLiinnee, Anagame has basic support to ask the
-       user for their guesses. However, some obvious features won't work, such
-       as using the cursor keys to navigate to previous answers.
+WARNING
 
-       To fix this, you can install other packages, such as:
+    If the dictionary file contains rude words, or other words of dubious
+    origin, then these may be produced by the program. It has no taste
+    filter.
 
-       Term::ReadLine::Perl
-               This package can be installed through CCPPAANN, perhaps like this:
-               "perl -MCPAN -e 'install Term::ReadLine::Perl'".  This package
-               provides Perl functions to provide basic shell history.
+    The words produced by this game come from the dictionary file of your
+    computer, and the author of this package is not responsible for them.
 
-       Term::ReadLine::Gnu
-               This package can be installed through CCPPAANN, perhaps like this:
-               "perl -MCPAN -e 'install Term::ReadLine::Gnu'". The standard
-               installation requires the GNU rreeaaddlliinnee development files to be
-               installed on your computer, along with a suitable C language
-               compiler; Windows users may find this as an optional extra when
-               they install Perl.  This package will be used in preference to
-               TTeerrmm::::RReeaaddLLiinnee::::PPeerrll (or any other implementation) if
-               available, as it provides additional features, to allow
-               callback handling, password input and filename completion.
-               These are of no use to Anagame, but we have no way to indicate
-               this to TTeerrmm::::RReeaaddLLiinnee.
+DEPENDENCIES
 
-       If you are unfortunate enough to have _T_e_r_m_:_:_R_e_a_d_L_i_n_e_:_:_G_n_u installed,
-       then it is suggested that you also install Perl::Unsafe::Signals. As
-       the name suggests, there is a slight risk to this package, as it can
-       allow the program to be interrupted at any time, including during
-       memory allocation and deallocation; this may cause memory corruption
-       that could conceivably be used to breach the operating system security.
-       To minimise that risk, the unsafe signals are enabled only when
-       actually asking the user for the response, not when calculating the
-       anagram itself. There is no risk if the game is idle waiting for a
-       keypress when an interrupt occurs.
+    List::Util
 
-       You can further minimise any risk by always running the game as a
-       regular user, never as a superuser or administrator.
+      Standard with Perl 5.8.0+. Used to create the anagrams.
 
+    Term::ReadLine
 
+      Standard with Perl 5.8.0+, but a stub library. This is used for
+      console interaction. See the section "READLINE NOTE" below for
+      compatibility with other Readline packages.
 
-perl v5.18.2                      2018-06-29                        ANAGAME(1)
+    Perl::Unsafe::Signals
+
+      This package can be installed through CPAN, perhaps like this: perl
+      -MCPAN -e 'install Perl::Unsafe::Signals'. This works around an
+      annoying bug with Term::ReadLine::GNU if used; see the section on
+      "READLINE NOTE" for further details. In a nutshell, it allows the
+      game to exit when you press Ctrl+C, without requiring you to then
+      press Enter.
+
+    Pod::Usage
+
+      Standard with Perl 5.8.0+. Used along with Getopt::Long for, to
+      implement the help and usage command-line options.
+
+    Getopt::Long
+
+      This package can be installed through CPAN, perhaps like this: perl
+      -MCPAN -e 'install Getopt::Long'. If available, this allows you to
+      control the game through the command-line options, perhaps to specify
+      a different dictionary file or to turn on alphagram hints.
+
+READLINE NOTE
+
+    Having installed Term::ReadLine, Anagame has basic support to ask the
+    user for their guesses. However, some obvious features won't work, such
+    as using the cursor keys to navigate to previous answers.
+
+    To fix this, you can install other packages, such as:
+
+    Term::ReadLine::Perl
+
+      This package can be installed through CPAN, perhaps like this: perl
+      -MCPAN -e 'install Term::ReadLine::Perl'. This package provides Perl
+      functions to provide basic shell history.
+
+    Term::ReadLine::Gnu
+
+      This package can be installed through CPAN, perhaps like this: perl
+      -MCPAN -e 'install Term::ReadLine::Gnu'. The standard installation
+      requires the GNU readline development files to be installed on your
+      computer, along with a suitable C language compiler; Windows users
+      may find this as an optional extra when they install Perl. This
+      package will be used in preference to Term::ReadLine::Perl (or any
+      other implementation) if available, as it provides additional
+      features, to allow callback handling, password input and filename
+      completion. These are of no use to Anagame, but we have no way to
+      indicate this to Term::ReadLine.
+
+    If you are unfortunate enough to have Term::ReadLine::Gnu installed,
+    then it is suggested that you also install Perl::Unsafe::Signals. As
+    the name suggests, there is a slight risk to this package, as it can
+    allow the program to be interrupted at any time, including during
+    memory allocation and deallocation; this may cause memory corruption
+    that could conceivably be used to breach the operating system security.
+    To minimise that risk, the unsafe signals are enabled only when
+    actually asking the user for the response, not when calculating the
+    anagram itself. There is no risk if the game is idle waiting for a
+    keypress when an interrupt occurs.
+
+    You can further minimise any risk by always running the game as a
+    regular user, never as a superuser or administrator.
+
